@@ -1,7 +1,8 @@
-package com.najdimu.shoppinglist
+package com.najdimu.shoppinglist.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.najdimu.shoppinglist.data.db.entities.ShoppingItem
 
 @Dao
 interface ShoppingDao {

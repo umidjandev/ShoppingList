@@ -14,12 +14,13 @@ class ShoppingItemAdapter(
     private val viewModel: ShoppingViewModel
 ): RecyclerView.Adapter<ShoppingItemAdapter.ShoppingViewHolder>() {
 
-
-    inner class ShoppingViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.shopping_item, parent, false)
         return ShoppingViewHolder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return items.size
     }
 
     override fun onBindViewHolder(holder: ShoppingViewHolder, position: Int) {
@@ -38,12 +39,12 @@ class ShoppingItemAdapter(
         }
 
         holder.itemView.ivMinus.setOnClickListener {
-            if (curShoppingItem.amount > 0) {
+            if(curShoppingItem.amount > 0) {
                 curShoppingItem.amount--
                 viewModel.upsert(curShoppingItem)
             }
         }
     }
 
-    override fun getItemCount() = items.size
+    inner class ShoppingViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 }
